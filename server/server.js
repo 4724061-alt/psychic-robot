@@ -22,3 +22,4 @@ io.on("connection", socket => {
   systemSocket(io, socket);
   aiSocket(io, socket);
 });
+app.use(express.static("public"));
