@@ -22,3 +22,12 @@ aiToggle.addEventListener("change", () => {
     aiOutput.innerHTML += `<div style="color:#888;">AIは現在OFFです。</div>`;
   }
 });
+aiPersonaSelect.addEventListener("change", () => {
+  const persona = aiPersonaSelect.value;
+
+  socket.emit("ai:updateSetting", {
+    persona: persona
+  });
+
+  aiOutput.innerHTML += `<div style="color:#8cf;">AI人格を「${persona}」に変更しました。</div>`;
+});
