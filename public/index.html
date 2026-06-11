@@ -1,33 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<script src="/js/ui.js"></script>
-<script src="/js/ai.js"></script>
-<script src="/js/socket.js"></script>
-<script src="/socket.io/socket.io.js"></script>
+  <meta charset="UTF-8">
+  <title>TRPG Community</title>
 
-<link rel="stylesheet" href="/css/style.css">
+  <!-- Socket.IO を最初に読み込む（重要） -->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <!-- あなたの JS -->
+  <script src="/js/ui.js"></script>
+  <script src="/js/ai.js"></script>
+  <script src="/js/socket.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-<div id="aiPanel" class="window ai-panel">
-  <div class="window-header" id="aiHeader">
-    <span>AIパネル</span>
-    <button id="aiCloseBtn">✕</button>
+
+<body>
+
+  <!-- AIウィンドウ -->
+  <div id="aiPanel" class="window ai-panel">
+    <div class="window-header" id="aiHeader">
+      <span>AIパネル</span>
+      <button id="aiCloseBtn">✕</button>
+    </div>
+
+    <div class="ai-controls">
+      <select id="aiPersonaSelect">
+        <option value="neutral">Chew（neutral）</option>
+        <option value="buddy">アイボーグ（buddy）</option>
+        <option value="gm">おGちゃん（GM）</option>
+        <option value="citrus2">citrus2（YOU）</option>
+      </select>
+
+      <label>
+        <input type="checkbox" id="aiToggle">
+        AI ON
+      </label>
+    </div>
+
+    <div id="aiOutput" class="ai-output"></div>
+
+    <input id="aiInput" class="ai-input" placeholder="AIに話しかける…">
   </div>
 
-  <div class="ai-controls">
-    <select id="aiPersonaSelect">
-      <option value="neutral">Chew（neutral）</option>
-      <option value="buddy">アイボーグ（buddy）</option>
-      <option value="gm">おGちゃん（GM）</option>
-      <option value="citrus2">citrus2（YOU）</option>
-    </select>
-
-    <label>
-      <input type="checkbox" id="aiToggle">
-      AI ON
-    </label>
-  </div>
-
-  <div id="aiOutput" class="ai-output"></div>
-
-  <input id="aiInput" class="ai-input" placeholder="AIに話しかける…">
-</div>
-
+</body>
+</html>
