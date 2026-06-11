@@ -1,1 +1,11 @@
-{}
+{userSettings: {
+  "userX": {
+    aiEnabled: true,
+    persona: "citrus2"
+  },
+  "userY": {
+    aiEnabled: false,
+    persona: "gm"
+  }
+}
+}
