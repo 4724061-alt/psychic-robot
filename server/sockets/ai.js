@@ -29,4 +29,24 @@ module.exports = (io, socket) => {
   });
 
 };
+socket.on("ai:message", async ({ text }) => {
+  const userId = socket.userId;
+  const setting = getUserAISetting(userId);
+
+  // AI OFF の場合
+  if (!setting.aiEnabled) {
+    io.to("user:" + userId).emit("ai:response", {
+      text: "AIは現在OFFです。"
+    });
+    return;
+  }
+
+  // AI呼び出し
+  const response = await callAI(setting.persona, text);
+
+  // 返答をユーザー専用 room に送信
+  io.to("user:" + userId).emit("ai:response", {
+    text: response
+  });
+});
 
