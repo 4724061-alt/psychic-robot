@@ -46,3 +46,13 @@ socket.on("ai:response", data => {
   aiOutput.innerHTML += `<div class="ai-msg">${data.text}</div>`;
   aiOutput.scrollTop = aiOutput.scrollHeight;
 });
+socket.on("ai:response", data => {
+  const msg = document.createElement("div");
+  msg.className = "ai-msg";
+  msg.textContent = data.text;
+
+  aiOutput.appendChild(msg);
+
+  // 自動スクロール
+  aiOutput.scrollTop = aiOutput.scrollHeight;
+});
