@@ -16,3 +16,9 @@ io.on("connection", socket => {
 });
 
 server.listen(process.env.PORT || 3000);
+const aiSocket = require("./sockets/ai");
+
+io.on("connection", socket => {
+  systemSocket(io, socket);
+  aiSocket(io, socket);
+});
