@@ -4,4 +4,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   makeWindowDraggable(aiPanel, aiHeader);
 });
-
+document.getElementById("aiCloseBtn").addEventListener("click", () => {
+  document.getElementById("aiPanel").style.display = "none";
+});
