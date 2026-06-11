@@ -42,3 +42,7 @@ aiInput.addEventListener("keydown", e => {
     socket.emit("ai:message", { text });
   }
 });
+socket.on("ai:response", data => {
+  aiOutput.innerHTML += `<div class="ai-msg">${data.text}</div>`;
+  aiOutput.scrollTop = aiOutput.scrollHeight;
+});
