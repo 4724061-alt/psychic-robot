@@ -44,3 +44,21 @@
   background: #333;
   color: #fff;
 }
+.ai-msg {
+  background: #333;
+  padding: 6px 8px;
+  margin: 6px 0;
+  border-radius: 6px;
+  color: #fff;
+  white-space: pre-wrap;
+}
+
+.user-msg {
+  background: #555;
+  padding: 6px 8px;
+  margin: 6px 0;
+  border-radius: 6px;
+  text-align: right;
+  color: #fff;
+  white-space: pre-wrap;
+}
