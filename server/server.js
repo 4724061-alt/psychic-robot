@@ -8,18 +8,24 @@ const io = new Server(server, {
   cors: { origin: "*" }
 });
 
-// --- Socket.IO 基礎 ---
+// ▼ これが超重要（public フォルダを配信）
+app.use(express.static("public"));
+
+// ▼ Socket.IO の分割ファイルを読み込む
 const systemSocket = require("./sockets/system");
-
-io.on("connection", socket => {
-  systemSocket(io, socket);
-});
-
-server.listen(process.env.PORT || 3000);
 const aiSocket = require("./sockets/ai");
 
+// ▼ 接続時の処理
 io.on("connection", socket => {
+  // ここで userId をセットする（仮）
+  socket.userId = socket.id; // 本番はログインIDに置き換える
+
   systemSocket(io, socket);
   aiSocket(io, socket);
 });
-app.use(express.static("public"));
+
+// ▼ Railway 用ポート設定
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log("Server running on port", PORT);
+});
