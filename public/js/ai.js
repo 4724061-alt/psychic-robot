@@ -31,3 +31,14 @@ aiPersonaSelect.addEventListener("change", () => {
 
   aiOutput.innerHTML += `<div style="color:#8cf;">AI人格を「${persona}」に変更しました。</div>`;
 });
+aiInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    const text = aiInput.value.trim();
+    if (!text) return;
+
+    aiOutput.innerHTML += `<div class="user-msg">${text}</div>`;
+    aiInput.value = "";
+
+    socket.emit("ai:message", { text });
+  }
+});
