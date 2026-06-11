@@ -1,12 +1,15 @@
-const socket = io();
+const socket = io();  // ← これが最重要（URLを書かない）
 
-// 自分のユーザールームに入る
-function joinUserRoom(userId) {
-  socket.emit("joinUser", userId);
-}
+socket.on("connect", () => {
+  console.log("connected:", socket.id);
+});
 
-// コミュニティに入る
-function joinCommunityRoom(communityId) {
-  socket.emit("joinCommunity", communityId);
-}
-
+// AIウィンドウ用のイベント（STEP8）
+socket.on("ai:response", data => {
+  const aiOutput = document.getElementById("aiOutput");
+  const msg = document.createElement("div");
+  msg.className = "ai-msg";
+  msg.textContent = data.text;
+  aiOutput.appendChild(msg);
+  aiOutput.scrollTop = aiOutput.scrollHeight;
+});
