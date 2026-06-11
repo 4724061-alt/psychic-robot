@@ -1,17 +1,16 @@
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
+const path = require("path");
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
-
-server.listen(process.env.PORT || 3000);
-
+const io = new Server(server, {
+  cors: { origin: "*" }
 });
 
-// ▼ これが超重要（public フォルダを配信）
-app.use(express.static("public"));
+// ▼ public フォルダを配信（超重要）
+app.use(express.static(path.join(__dirname, "../public")));
 
 // ▼ Socket.IO の分割ファイルを読み込む
 const systemSocket = require("./sockets/system");
@@ -19,8 +18,10 @@ const aiSocket = require("./sockets/ai");
 
 // ▼ 接続時の処理
 io.on("connection", socket => {
-  // ここで userId をセットする（仮）
-  socket.userId = socket.id; // 本番はログインIDに置き換える
+  console.log("接続:", socket.id);
+
+  // 仮の userId（本番はログインIDに置き換える）
+  socket.userId = socket.id;
 
   systemSocket(io, socket);
   aiSocket(io, socket);
