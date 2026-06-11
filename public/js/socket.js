@@ -4,7 +4,6 @@ socket.on("connect", () => {
   console.log("connected:", socket.id);
 });
 
-// AIの返答を受け取る
 socket.on("ai:response", data => {
   const aiOutput = document.getElementById("aiOutput");
   if (!aiOutput) return;
